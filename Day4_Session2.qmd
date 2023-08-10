@@ -5,3 +5,45 @@ editor: visual
 ---
 
 ## Here is this afternoon's computational session's document made from a created repository.
+
+```{r}
+library(GGally)
+library(skimr)
+library(palmerpenguins)
+library(tidyverse)
+```
+
+## Basic Data Exploration
+
+-   names: get variable names
+
+-   dim: get data dimensions
+
+-   head: get first n lines (6 by default)
+
+-   tail: get last n lines (6 by default)
+
+-   summary: get basic summary statistics
+
+```{r}
+names(penguins)
+
+dim(penguins)
+
+head(penguins)
+
+tail(penguins)
+# na in summary means how many missing values
+summary(penguins)
+```
+
+```{r}
+#way to explicitly state which package you want to pull a function from
+skimr::skim(penguins)
+
+```
+
+```{r}
+# created a grid showing different data comparisons between variables
+ggpairs(penguins)
+```
