@@ -2,6 +2,8 @@
 title: "Day 4 Session 2"
 format: html
 editor: visual
+execute: 
+  warning: FALSE
 ---
 
 ## Here is this afternoon's computational session's document made from a created repository.
@@ -46,4 +48,41 @@ skimr::skim(penguins)
 ```{r}
 # created a grid showing different data comparisons between variables
 ggpairs(penguins)
+```
+
+```{r}
+penguins %>%
+  select(species, body_mass_g, ends_with("_mm")) %>% 
+  GGally::ggpairs(aes(color = species)) +
+  scale_colour_manual(values = c("darkorange","purple","cyan4")) +
+  scale_fill_manual(values = c("darkorange","purple","cyan4"))
+```
+
+## Making more exploratory charts in ggplot2
+
+```{r}
+# Histogram - only needs 1 variable
+ggplot(data = penguins, aes(x = flipper_length_mm)) + 
+  geom_histogram(fill = "orange") +
+  theme_minimal()
+
+```
+
+```{r}
+# Histogram - only needs 1 variable
+ggplot(data = penguins, aes(x = flipper_length_mm)) + 
+  geom_histogram(aes(fill = species)) +
+  theme_minimal()
+```
+
+```{r}
+ggplot(data = penguins, aes( x = species, y = bill_length_mm)) + 
+  geom_boxplot(fill = "yellow", aes(color = island)) +
+#color is of points, size of points, alpha is dot opacity
+  geom_jitter(color = "magenta", size = 5, alpha = 0.5, aes(size = bill_depth_mm, color = bill_depth_mm)) +
+  theme_dark()
+```
+
+```{r}
+
 ```
